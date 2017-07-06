@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div id="login_registro">
+        <div id="login" v-show="vistaLogin" class="container">
+            <div class="row main">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h1 class="title">Iniciar Sesión</h1>
+                    </div>
+                </div>
+                <div class="main-login main-center">
+                    <form class="form-horizontal" method="post" action="@Url.Action("IniciarSesion", "Main", new { Area = "Seguridad"})">
+
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Usuario</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input v-model="usuario" type="text" class="form-control" name="correo" id="correo" placeholder="Ingrese su usuario" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input v-model="clave" type="password" class="form-control" name="clave" id="clave" placeholder="Ingrese su contraseña" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <button v-bind:disabled="!isFormValid()" type="submit"
+                                    class="btn btn-primary btn-lg btn-block login-button">
+                                Iniciar Sesión
+                            </button>
+                        </div>
+                        <div class="login-register">
+                            <a href="#" id="verRegistroEmpresa">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="registro-empresa" v-show="vistaRegistro" class="container">
+            <div class="row main">
+                <div class="panel-heading">
+                    <div class="panel-title text-center">
+                        <h1 class="title">Registrarse</h1>
+                    </div>
+                </div>
+                <div class="main-login main-center">
+                    <form class="form-horizontal" method="post" action="#">
+
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Usuario</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Ingrese el nombre de la empresa" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Correo</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese su correo" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Ingrese la contraseña" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                        </div>
+                        <div class="login-register">
+                            <a href="#" id="verLogin">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

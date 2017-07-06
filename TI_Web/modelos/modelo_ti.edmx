@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bd_webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CURSO">
+          <Key>
+            <PropertyRef Name="ID_CURSO" />
+          </Key>
+          <Property Name="ID_CURSO" Type="int" Nullable="false" />
+          <Property Name="ID_PROFESOR" Type="int" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="30" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="60" />
+          <Property Name="HORARIO" Type="varchar" MaxLength="60" />
+          <Property Name="CREDITOS" Type="int" />
+        </EntityType>
+        <EntityType Name="PROFESOR">
+          <Key>
+            <PropertyRef Name="ID_PROFESOR" />
+          </Key>
+          <Property Name="ID_PROFESOR" Type="int" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="int" />
+          <Property Name="ID_USUARIO_CREA" Type="int" />
+          <Property Name="ID_USUARIO_MOD" Type="int" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="30" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="30" />
+          <Property Name="CORREO" Type="varchar" MaxLength="30" />
+          <Property Name="CELULAR" Type="int" />
+          <Property Name="DIRECCION" Type="varchar" MaxLength="30" />
+          <Property Name="PROFESION" Type="varchar" MaxLength="30" />
+          <Property Name="ABSTRACT" Type="varchar" MaxLength="30" />
+          <Property Name="DNI" Type="int" />
+          <Property Name="ESTADO" Type="int" />
+          <Property Name="FECHA_CREA" Type="varchar" MaxLength="30" />
+          <Property Name="FECHA_MOD" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_CURSO_REFERENCE_PROFESOR">
+          <End Role="PROFESOR" Type="Self.PROFESOR" Multiplicity="0..1" />
+          <End Role="CURSO" Type="Self.CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESOR">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Principal>
+            <Dependent Role="CURSO">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bd_webModelStoreContainer">
+          <EntitySet Name="CURSO" EntityType="Self.CURSO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESOR" EntityType="Self.PROFESOR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CURSO_REFERENCE_PROFESOR" Association="Self.FK_CURSO_REFERENCE_PROFESOR">
+            <End Role="PROFESOR" EntitySet="PROFESOR" />
+            <End Role="CURSO" EntitySet="CURSO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bd_webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="bd_webEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="CURSOes" EntityType="bd_webModel.CURSO" />
+          <EntitySet Name="PROFESORs" EntityType="bd_webModel.PROFESOR" />
+          <AssociationSet Name="FK_CURSO_REFERENCE_PROFESOR" Association="bd_webModel.FK_CURSO_REFERENCE_PROFESOR">
+            <End Role="PROFESOR" EntitySet="PROFESORs" />
+            <End Role="CURSO" EntitySet="CURSOes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CURSO">
+          <Key>
+            <PropertyRef Name="ID_CURSO" />
+          </Key>
+          <Property Name="ID_CURSO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PROFESOR" Type="Int32" />
+          <Property Name="NOMBRE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="HORARIO" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="CREDITOS" Type="Int32" />
+          <NavigationProperty Name="PROFESOR" Relationship="bd_webModel.FK_CURSO_REFERENCE_PROFESOR" FromRole="CURSO" ToRole="PROFESOR" />
+        </EntityType>
+        <EntityType Name="PROFESOR">
+          <Key>
+            <PropertyRef Name="ID_PROFESOR" />
+          </Key>
+          <Property Name="ID_PROFESOR" Type="Int32" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="Int32" />
+          <Property Name="ID_USUARIO_CREA" Type="Int32" />
+          <Property Name="ID_USUARIO_MOD" Type="Int32" />
+          <Property Name="NOMBRES" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CORREO" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="Int32" />
+          <Property Name="DIRECCION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PROFESION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ABSTRACT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DNI" Type="Int32" />
+          <Property Name="ESTADO" Type="Int32" />
+          <Property Name="FECHA_CREA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_MOD" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CURSOes" Relationship="bd_webModel.FK_CURSO_REFERENCE_PROFESOR" FromRole="PROFESOR" ToRole="CURSO" />
+        </EntityType>
+        <Association Name="FK_CURSO_REFERENCE_PROFESOR">
+          <End Type="bd_webModel.PROFESOR" Role="PROFESOR" Multiplicity="0..1" />
+          <End Type="bd_webModel.CURSO" Role="CURSO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESOR">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Principal>
+            <Dependent Role="CURSO">
+              <PropertyRef Name="ID_PROFESOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bd_webModelStoreContainer" CdmEntityContainer="bd_webEntities" >
+          <EntitySetMapping Name="CURSOes">
+            <EntityTypeMapping TypeName="bd_webModel.CURSO">
+              <MappingFragment StoreEntitySet="CURSO">
+                <ScalarProperty Name="CREDITOS" ColumnName="CREDITOS" />
+                <ScalarProperty Name="HORARIO" ColumnName="HORARIO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_PROFESOR" ColumnName="ID_PROFESOR" />
+                <ScalarProperty Name="ID_CURSO" ColumnName="ID_CURSO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFESORs">
+            <EntityTypeMapping TypeName="bd_webModel.PROFESOR">
+              <MappingFragment StoreEntitySet="PROFESOR">
+                <ScalarProperty Name="FECHA_MOD" ColumnName="FECHA_MOD" />
+                <ScalarProperty Name="FECHA_CREA" ColumnName="FECHA_CREA" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="ABSTRACT" ColumnName="ABSTRACT" />
+                <ScalarProperty Name="PROFESION" ColumnName="PROFESION" />
+                <ScalarProperty Name="DIRECCION" ColumnName="DIRECCION" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="CORREO" ColumnName="CORREO" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="ID_USUARIO_MOD" ColumnName="ID_USUARIO_MOD" />
+                <ScalarProperty Name="ID_USUARIO_CREA" ColumnName="ID_USUARIO_CREA" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="ID_PROFESOR" ColumnName="ID_PROFESOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
